@@ -104,12 +104,12 @@ A list item component with action buttons for CRUD operations.
 - Responsive button labels (hidden on mobile)
 - Confirmation dialog for delete action
 
-### Modal Template Component
+### Modal Component
 
 A complete modal component with form support and multiple levels.
 
 ```blade
-<x-livewire-bootstrap-components::modal-template 
+<x-livewire-bootstrap-components::modal 
     id="myModal"
     size="lg"
     title="Modal Title"
@@ -120,7 +120,7 @@ A complete modal component with form support and multiple levels.
     submit_icon="save"
     :level="2">
     Modal content here
-</x-livewire-bootstrap-components::modal-template>
+</x-livewire-bootstrap-components::modal>
 ```
 
 **Attributes:**
@@ -164,7 +164,7 @@ Displays validation errors in a dismissible alert.
 **Features:**
 - Shows all validation errors in a single alert
 - Dismissible with close button
-- Automatically included in modal template
+- Automatically included in modal
 
 ## Styles
 
