@@ -27,7 +27,7 @@ php artisan vendor:publish --provider="Mantix\\LivewireBootstrapComponents\\Live
 A flexible card component with customizable styling and optional header/footer.
 
 ```blade
-<x-livewire-bootstrap-components::card 
+<x-bootstrap::card 
     title="Card Title"
     :square="true"
     background_image="/path/to/image.jpg"
@@ -35,7 +35,7 @@ A flexible card component with customizable styling and optional header/footer.
     text_color="white"
     footer="Footer content">
     Card content here.
-</x-livewire-bootstrap-components::card>
+</x-bootstrap::card>
 ```
 
 **Attributes:**
@@ -51,12 +51,12 @@ A flexible card component with customizable styling and optional header/footer.
 A form group wrapper with label, icon support, and automatic error handling.
 
 ```blade
-<x-livewire-bootstrap-components::form-group 
+<x-bootstrap::form-group 
     label="Email Address"
     icon="envelope"
     :required="true">
     <input type="email" name="email" class="form-control" wire:model="email">
-</x-livewire-bootstrap-components::form-group>
+</x-bootstrap::form-group>
 ```
 
 **Attributes:**
@@ -74,7 +74,7 @@ A form group wrapper with label, icon support, and automatic error handling.
 A list item component with action buttons for CRUD operations.
 
 ```blade
-<x-livewire-bootstrap-components::list-row 
+<x-bootstrap::list-row 
     class="custom-class"
     background_color="light"
     text_color="dark"
@@ -85,7 +85,7 @@ A list item component with action buttons for CRUD operations.
     edit="editItem"
     delete="deleteItem">
     Item content here
-</x-livewire-bootstrap-components::list-row>
+</x-bootstrap::list-row>
 ```
 
 **Attributes:**
@@ -109,7 +109,7 @@ A list item component with action buttons for CRUD operations.
 A complete modal component with form support and multiple levels.
 
 ```blade
-<x-livewire-bootstrap-components::modal 
+<x-bootstrap::modal 
     id="myModal"
     size="lg"
     title="Modal Title"
@@ -120,7 +120,7 @@ A complete modal component with form support and multiple levels.
     submit_icon="save"
     :level="2">
     Modal content here
-</x-livewire-bootstrap-components::modal>
+</x-bootstrap::modal>
 ```
 
 **Attributes:**
@@ -145,7 +145,7 @@ A complete modal component with form support and multiple levels.
 Displays session flash messages with different types.
 
 ```blade
-<x-livewire-bootstrap-components::session-message />
+<x-bootstrap::session-message />
 ```
 
 **Features:**
@@ -158,7 +158,7 @@ Displays session flash messages with different types.
 Displays validation errors in a dismissible alert.
 
 ```blade
-<x-livewire-bootstrap-components::errors />
+<x-bootstrap::errors />
 ```
 
 **Features:**
