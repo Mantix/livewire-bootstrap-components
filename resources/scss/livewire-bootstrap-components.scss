@@ -1,0 +1,35 @@
+.modal.show {
+    display: block !important;
+}
+
+.modal.modal-level-2 {
+    z-index: 1065;
+}
+
+.modal-backdrop.modal-level-2 {
+    z-index: 1060;
+}
+
+.modal.modal-level-3 {
+    z-index: 1075;
+}
+
+.modal-backdrop.modal-level-3 {
+    z-index: 1070;
+}
+
+.modal.modal-level-4 {
+    z-index: 1085;
+}
+
+.modal-backdrop.modal-level-4 {
+    z-index: 1080;
+}
+
+.modal.modal-level-5 {
+    z-index: 1095;
+}
+
+.modal-backdrop.modal-level-5 {
+    z-index: 1090;
+}

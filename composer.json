@@ -1,0 +1,28 @@
+{
+    "name": "mantix/livewire-bootstrap-components",
+    "description": "Reusable Livewire Bootstrap components by Mantix BV",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pieter Naber",
+            "email": "support@mantix.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mantix\\LivewireBootstrapComponents\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mantix\\LivewireBootstrapComponents\\LivewireBootstrapComponentsServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "livewire/livewire": "^3.0"
+    }
+}
