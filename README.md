@@ -171,7 +171,7 @@ Displays validation errors in a dismissible alert.
 The package includes SCSS files for modal z-index management. After publishing the SCSS files, you can import them in your main SCSS file:
 
 ```scss
-@import 'vendor/livewire-bootstrap-components/livewire-bootstrap-components';
+@import '../../vendor/mantix/livewire-bootstrap-components/resources/scss/livewire-bootstrap-components';
 ```
 
 ### Modal Z-Index Levels
