@@ -29,7 +29,7 @@
                 @endif
             </div>
             <div class="modal-body">
-                <x-errors />
+                <x-bootstrap::errors />
                 {{ $slot }}
             </div>
             @if (!empty($submit_text) || !empty($submit_icon))

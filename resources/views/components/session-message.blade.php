@@ -19,4 +19,4 @@
     </div>
 @endif
 
-<x-errors />
+<x-bootstrap::errors />
