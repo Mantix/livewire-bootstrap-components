@@ -25,7 +25,7 @@
             <div class="modal-header">
                 <h4 class="modal-title" id="{{ $id }}_label">{!! $title !!}</h4>
                 @if (isset($close_function))
-                    <button type="button" class="btn-close" wire:click="{{ $close_function }}" aria-label="{{ __('Sluiten') }}"></button>
+                    <button type="button" class="btn-close" wire:click="{{ $close_function }}" aria-label="{{ __('bootstrap::ui.close') }}"></button>
                 @endif
             </div>
             <div class="modal-body">
@@ -35,7 +35,7 @@
             @if (!empty($submit_text) || !empty($submit_icon))
                 <div class="modal-footer">
                     @if (isset($close_function))
-                        <button type="button" class="btn btn-secondary me-auto" wire:click="{{ $close_function }}">{{ __('Annuleer') }}</button>
+                        <button type="button" class="btn btn-secondary me-auto" wire:click="{{ $close_function }}">{{ __('bootstrap::ui.cancel') }}</button>
                     @endif
                     <button type="submit" class="btn btn-lg btn-{{ $submit_color ?? 'primary' }}" wire:loading.attr="disabled">
                         @if (!empty($submit_icon))

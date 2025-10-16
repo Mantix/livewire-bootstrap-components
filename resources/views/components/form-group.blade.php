@@ -9,7 +9,7 @@
     }
 
     $model_id = null;
-    if (preg_match('/wire:model="([^"]+)"/', $slot, $matches)) {
+    if (preg_match('/wire:model(?:\.[a-zA-Z0-9_]+)*\s*=\s*["\']([^"\']+)["\']/', $slot, $matches)) {
         $model_id = $matches[1];
     }
 @endphp
