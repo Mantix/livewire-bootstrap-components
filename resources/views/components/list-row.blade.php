@@ -27,7 +27,7 @@
                 @endphp
 
                 @if ($hasHref)
-                    <a href="{{ $action['href'] }}" class="btn btn-{{ $color }} border-black" title="{{ $label }}">
+                    <a href="{{ $action['href'] }}" class="btn btn-{{ $color }}" title="{{ $label }}">
                         <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
                         @if (!$narrow && !empty($label))
                             <span>{{ $label }}</span>
@@ -36,7 +36,7 @@
                 @elseif($hasWireClick)
                     <button type="button"
                             wire:click="{{ $action['wire:click'] }}"
-                            class="btn btn-{{ $color }} border-black"
+                            class="btn btn-{{ $color }}"
                             @if ($confirm) wire:confirm="{{ $confirm }}" @endif
                             title="{{ $label }}">
                         <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
