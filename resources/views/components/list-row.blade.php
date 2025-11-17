@@ -1,24 +1,89 @@
-@props(['class', 'background_color', 'text_color', 'view', 'start', 'sort_up', 'sort_down', 'edit', 'delete'])
+@props(['class', 'background_color', 'text_color', 'actions' => []])
+
+@php
+    $actions = is_array($actions) ? $actions : [];
+    $dblclickAction = collect($actions)->first(function ($action) {
+        return isset($action['wire:click']) && (str_contains($action['wire:click'], 'view') || str_contains($action['wire:click'], 'edit'));
+    });
+    $dblclickValue = $dblclickAction ? '$wire.' . $dblclickAction['wire:click'] : '';
+    $dropdownId = 'listRowActions' . uniqid();
+@endphp
 
 <li class="list-group-item d-flex justify-content-between align-items-start {{ $class ?? '' }} {{ isset($background_color) ? 'bg-' . $background_color : '' }} {{ isset($text_color) ? 'text-' . $text_color : '' }}"
-    @dblclick="{{ !empty($view) ? '$wire.' . $view : (!empty($edit) ? '$wire.' . $edit : '') }}">
+    @if (!empty($dblclickValue)) @dblclick="{{ $dblclickValue }}" @endif>
     <div class="me-auto my-1 text-truncate">{{ $slot }}</div>
-    @if (!empty($view))
-        <a href="{{ $view }}" class="btn btn-light border-black ms-1"><i class="fa-solid fa-fw fa-eye"></i> <span class="d-none d-md-inline">{{ __('bootstrap::ui.view') }}</span></a>
-    @endif
-    @if (!empty($start))
-        <a href="{{ $start }}" class="btn btn-primary border-black ms-1"><i class="fa-solid fa-fw fa-play"></i> <span class="d-none d-md-inline">{{ __('bootstrap::ui.start') }}</span></a>
-    @endif
-    @if (!empty($sort_up))
-        <button type="button" wire:click="{{ $sort_up }}" class="btn btn-outline-primary ms-1"><i class="fa-solid fa-fw fa-arrow-up"></i></button>
-    @endif
-    @if (!empty($sort_down))
-        <button type="button" wire:click="{{ $sort_down }}" class="btn btn-outline-primary ms-1"><i class="fa-solid fa-fw fa-arrow-down"></i></button>
-    @endif
-    @if (!empty($edit))
-        <button type="button" wire:click="{{ $edit }}" class="btn btn-dark border-black ms-1"><i class="fa-solid fa-fw fa-pencil"></i> <span class="d-none d-md-inline">{{ __('bootstrap::ui.edit') }}</span></button>
-    @endif
-    @if (!empty($delete))
-        <button type="button" wire:click="{{ $delete }}" class="btn btn-danger border-black ms-1" wire:confirm="{{ __('bootstrap::ui.confirm_delete') }}"><i class="fa-solid fa-fw fa-trash-can"></i> <span class="d-none d-md-inline">{{ __('bootstrap::ui.delete') }}</span></button>
+
+    @if (!empty($actions))
+        {{-- Desktop: Button Group --}}
+        <div class="btn-group d-none d-md-flex ms-1" role="group">
+            @foreach ($actions as $action)
+                @php
+                    $color = $action['color'] ?? 'light';
+                    $icon = $action['icon'] ?? 'circle';
+                    $label = $action['label'] ?? '';
+                    $hasHref = isset($action['href']);
+                    $hasWireClick = isset($action['wire:click']);
+                    $confirm = $action['confirm'] ?? null;
+                @endphp
+
+                @if ($hasHref)
+                    <a href="{{ $action['href'] }}" class="btn btn-{{ $color }} border-black">
+                        <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
+                        @if (!empty($label))
+                            <span>{{ $label }}</span>
+                        @endif
+                    </a>
+                @elseif($hasWireClick)
+                    <button type="button"
+                            wire:click="{{ $action['wire:click'] }}"
+                            class="btn btn-{{ $color }} border-black"
+                            @if ($confirm) wire:confirm="{{ $confirm }}" @endif>
+                        <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
+                        @if (!empty($label))
+                            <span>{{ $label }}</span>
+                        @endif
+                    </button>
+                @endif
+            @endforeach
+        </div>
+
+        {{-- Mobile: Dropdown Menu --}}
+        <div class="dropdown d-md-none ms-1">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="{{ $dropdownId }}" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-fw fa-ellipsis-vertical"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="{{ $dropdownId }}">
+                @foreach ($actions as $action)
+                    @php
+                        $icon = $action['icon'] ?? 'circle';
+                        $label = $action['label'] ?? '';
+                        $hasHref = isset($action['href']);
+                        $hasWireClick = isset($action['wire:click']);
+                        $confirm = $action['confirm'] ?? null;
+                    @endphp
+
+                    <li>
+                        @if ($hasHref)
+                            <a class="dropdown-item" href="{{ $action['href'] }}">
+                                <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
+                                @if (!empty($label))
+                                    <span class="ms-2">{{ $label }}</span>
+                                @endif
+                            </a>
+                        @elseif($hasWireClick)
+                            <button type="button"
+                                    class="dropdown-item"
+                                    wire:click="{{ $action['wire:click'] }}"
+                                    @if ($confirm) wire:confirm="{{ $confirm }}" @endif>
+                                <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
+                                @if (!empty($label))
+                                    <span class="ms-2">{{ $label }}</span>
+                                @endif
+                            </button>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 </li>
