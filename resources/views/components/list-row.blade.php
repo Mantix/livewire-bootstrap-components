@@ -1,4 +1,4 @@
-@props(['class', 'background_color', 'text_color', 'actions' => []])
+@props(['class', 'background_color', 'text_color', 'narrow' => false, 'actions' => []])
 
 @php
     $actions = is_array($actions) ? $actions : [];
@@ -27,9 +27,9 @@
                 @endphp
 
                 @if ($hasHref)
-                    <a href="{{ $action['href'] }}" class="btn btn-{{ $color }} border-black">
+                    <a href="{{ $action['href'] }}" class="btn btn-{{ $color }} border-black" title="{{ $label }}">
                         <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
-                        @if (!empty($label))
+                        @if (!$narrow && !empty($label))
                             <span>{{ $label }}</span>
                         @endif
                     </a>
@@ -37,9 +37,10 @@
                     <button type="button"
                             wire:click="{{ $action['wire:click'] }}"
                             class="btn btn-{{ $color }} border-black"
-                            @if ($confirm) wire:confirm="{{ $confirm }}" @endif>
+                            @if ($confirm) wire:confirm="{{ $confirm }}" @endif
+                            title="{{ $label }}">
                         <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
-                        @if (!empty($label))
+                        @if (!$narrow && !empty($label))
                             <span>{{ $label }}</span>
                         @endif
                     </button>
