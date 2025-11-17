@@ -71,19 +71,21 @@ A form group wrapper with label, icon support, and automatic error handling.
 
 ### List Row Component
 
-A list item component with action buttons for CRUD operations.
+A list item component with flexible action buttons for CRUD operations.
 
 ```blade
 <x-bootstrap::list-row 
     class="custom-class"
     background_color="light"
     text_color="dark"
-    view="viewItem"
-    start="startItem"
-    sort_up="moveUp"
-    sort_down="moveDown"
-    edit="editItem"
-    delete="deleteItem">
+    :actions="[
+        ['href' => '/items/1', 'icon' => 'eye', 'color' => 'light', 'label' => 'View'],
+        ['wire:click' => 'startItem', 'icon' => 'play', 'color' => 'primary', 'label' => 'Start'],
+        ['wire:click' => 'moveUp', 'icon' => 'arrow-up', 'color' => 'outline-primary'],
+        ['wire:click' => 'moveDown', 'icon' => 'arrow-down', 'color' => 'outline-primary'],
+        ['wire:click' => 'editItem', 'icon' => 'pencil', 'color' => 'dark', 'label' => 'Edit'],
+        ['wire:click' => 'deleteItem', 'icon' => 'trash-can', 'color' => 'danger', 'label' => 'Delete', 'confirm' => 'Are you sure?']
+    ]">
     Item content here
 </x-bootstrap::list-row>
 ```
@@ -92,17 +94,22 @@ A list item component with action buttons for CRUD operations.
 - `class` (string, optional): Additional CSS classes
 - `background_color` (string, optional): Bootstrap background color
 - `text_color` (string, optional): Bootstrap text color
-- `view` (string, optional): Livewire method for view action
-- `start` (string, optional): Livewire method for start action
-- `sort_up` (string, optional): Livewire method for move up
-- `sort_down` (string, optional): Livewire method for move down
-- `edit` (string, optional): Livewire method for edit action
-- `delete` (string, optional): Livewire method for delete action
+- `actions` (array, optional): Array of action configurations
+
+**Action Configuration:**
+Each action in the `actions` array can have:
+- `href` (string, optional): URL for regular links (use either `href` or `wire:click`)
+- `wire:click` (string, optional): Livewire method name (use either `href` or `wire:click`)
+- `icon` (string, optional, default: 'circle'): FontAwesome icon name (without 'fa-' prefix)
+- `color` (string, optional, default: 'light'): Bootstrap button color class
+- `label` (string, optional): Text label to display next to the icon
+- `confirm` (string, optional): Confirmation message for `wire:click` actions
 
 **Features:**
-- Double-click to view or edit
-- Responsive button labels (hidden on mobile)
-- Confirmation dialog for delete action
+- Double-click to view or edit (automatically detects 'view' or 'edit' in wire:click methods)
+- Responsive design: button group on desktop (md and up), dropdown menu on mobile
+- Supports both regular links (`href`) and Livewire actions (`wire:click`)
+- Confirmation dialogs for destructive actions
 
 ### Modal Component
 
