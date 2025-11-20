@@ -27,7 +27,7 @@
                 @endphp
 
                 @if ($hasHref)
-                    <a href="{{ $action['href'] }}" class="btn btn-{{ $color }}" title="{{ $label }}">
+                    <a href="{{ $action['href'] }}" {{ $action['target'] ? 'target="' . $action['target'] . '"' : '' }} class="btn btn-{{ $color }}" title="{{ $label }}">
                         <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
                         @if (!$narrow && !empty($label))
                             <span>{{ $label }}</span>
@@ -65,7 +65,7 @@
 
                     <li>
                         @if ($hasHref)
-                            <a class="dropdown-item" href="{{ $action['href'] }}">
+                            <a href="{{ $action['href'] }}" {{ $action['target'] ? 'target="' . $action['target'] . '"' : '' }} class="dropdown-item">
                                 <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
                                 @if (!empty($label))
                                     <span class="ms-2">{{ $label }}</span>
