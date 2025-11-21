@@ -3,7 +3,7 @@
 @php
     $actions = is_array($actions) ? $actions : [];
     $dblclickAction = collect($actions)->first(function ($action) {
-        return isset($action['wire:click']) && (str_contains($action['wire:click'], 'view') || str_contains($action['wire:click'], 'edit'));
+        return isset($action['wire:click']) && $action['color'] == 'primary';
     });
     $dblclickValue = $dblclickAction ? '$wire.' . $dblclickAction['wire:click'] : '';
     $dropdownId = 'listRowActions' . uniqid();
@@ -27,7 +27,7 @@
                 @endphp
 
                 @if ($hasHref)
-                    <a href="{{ $action['href'] }}" {{ $action['target'] ? 'target="' . $action['target'] . '"' : '' }} class="btn btn-{{ $color }}" title="{{ $label }}">
+                    <a href="{{ $action['href'] }}" {{ isset($action['target']) ? 'target="' . $action['target'] . '"' : '' }} class="btn btn-{{ $color }}" title="{{ $label }}">
                         <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
                         @if (!$narrow && !empty($label))
                             <span>{{ $label }}</span>
@@ -35,7 +35,7 @@
                     </a>
                 @elseif($hasWireClick)
                     <button type="button"
-                            wire:click="{{ $action['wire:click'] }}"
+                            wire:click.stop="{{ $action['wire:click'] }}"
                             class="btn btn-{{ $color }}"
                             @if ($confirm) wire:confirm="{{ $confirm }}" @endif
                             title="{{ $label }}">
@@ -74,7 +74,7 @@
                         @elseif($hasWireClick)
                             <button type="button"
                                     class="dropdown-item"
-                                    wire:click="{{ $action['wire:click'] }}"
+                                    wire:click.stop="{{ $action['wire:click'] }}"
                                     @if ($confirm) wire:confirm="{{ $confirm }}" @endif>
                                 <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
                                 @if (!empty($label))
