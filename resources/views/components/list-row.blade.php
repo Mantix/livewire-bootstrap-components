@@ -65,7 +65,7 @@
 
                     <li>
                         @if ($hasHref)
-                            <a href="{{ $action['href'] }}" {{ $action['target'] ? 'target="' . $action['target'] . '"' : '' }} class="dropdown-item">
+                            <a href="{{ $action['href'] }}" {{ isset($action['target']) ? 'target="' . $action['target'] . '"' : '' }} class="dropdown-item">
                                 <i class="fa-solid fa-fw fa-{{ $icon }}"></i>
                                 @if (!empty($label))
                                     <span class="ms-2">{{ $label }}</span>
