@@ -4,7 +4,7 @@
     @if (!empty($title))
         <h4 class="card-header {{ !empty($background_color) ? 'bg-' . $background_color : '' }} {{ !empty($text_color) ? 'text-' . $text_color : '' }} p-3">{!! $title !!}</h4>
     @endif
-    <div class="card-body {{ !empty($body_class) && strpos($body_class, 'p-') === false ? '' : 'p-3' }} {{ $body_class ?? '' }}">
+    <div class="card-body {{ !empty($body_class) && strpos($body_class, 'p-') === false ? 'p-3' : '' }} {{ $body_class ?? '' }}">
         {{ $slot }}
     </div>
     @if (!empty($footer))
