@@ -19,4 +19,11 @@
     </div>
 @endif
 
+@if (session()->has('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong><i class="fa-solid fa-triangle-exclamation"></i> {{ __('bootstrap::ui.error') }}</strong> {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('bootstrap::ui.close') }}"></button>
+    </div>
+@endif
+
 <x-bootstrap::errors />
