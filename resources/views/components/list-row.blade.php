@@ -41,14 +41,14 @@
                     <a href="{{ $action['href'] }}" {{ !empty($action['target']) ? 'target="' . $action['target'] . '"' : '' }} id="{{ $action['key'] }}" class="btn btn-{{ $action['color'] }}" title="{{ $action['label'] }}">
                         <i class="fa-solid fa-fw fa-{{ $action['icon'] }}"></i>
                         @if (!$narrow && !empty($action['label']))
-                            {{ $action['label'] }}
+                            <span class="d-none d-md-inline">{{ $action['label'] }}</span>
                         @endif
                     </a>
                 @elseif(!empty($action['wire:click']))
                     <button type="button" wire:click.stop="{{ $action['wire:click'] }}" id="{{ $action['key'] }}" class="btn btn-{{ $action['color'] }}" @if (!empty($action['wire:confirm'])) wire:confirm="{{ $action['wire:confirm'] }}" @endif title="{{ $action['label'] }}">
                         <i class="fa-solid fa-fw fa-{{ $action['icon'] }}"></i>
                         @if (!$narrow && !empty($action['label']))
-                            {{ $action['label'] }}
+                            <span class="d-none d-md-inline">{{ $action['label'] }}</span>
                         @endif
                     </button>
                 @endif
