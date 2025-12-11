@@ -7,7 +7,7 @@
                 <h4 class="{{ !empty($background_color) ? 'bg-' . $background_color : '' }} {{ !empty($text_color) ? 'text-' . $text_color : '' }}">{!! $title !!}</h4>
             @endif
             @if (!empty($actions))
-                <x-actions :actions="$actions" class="ms-2" />
+                <x-bootstrap::actions :actions="$actions" class="ms-2" />
             @endif
         </div>
     @endif

@@ -5,9 +5,11 @@
     $actions_id_prefix = 'list_row_actions_' . uniqid();
 
     // Find the first primary action to wire up the double-click helper
-    $primary_action_key = collect($actions)->keys()->first(function ($key) use ($actions) {
-        return ($actions[$key]['color'] ?? null) === 'primary';
-    });
+    $primary_action_key = collect($actions)
+        ->keys()
+        ->first(function ($key) use ($actions) {
+            return ($actions[$key]['color'] ?? null) === 'primary';
+        });
     $primary_action = $primary_action_key !== null ? $actions[$primary_action_key] : null;
 
     $dblclick_value = null;
@@ -24,5 +26,5 @@
 <li class="list-group-item d-flex justify-content-between align-items-start {{ $class ?? '' }} {{ !empty($background_color) ? 'bg-' . $background_color : '' }} {{ !empty($text_color) ? 'text-' . $text_color : '' }}" @if (!empty($dblclick_value)) @dblclick="{{ $dblclick_value }}" @endif>
     <div class="me-auto my-1 text-truncate">{{ $slot }}</div>
 
-    <x-actions :actions="$actions" :narrow="$narrow" :id-prefix="$actions_id_prefix" class="ms-1" />
+    <x-bootstrap::actions :actions="$actions" :narrow="$narrow" :id-prefix="$actions_id_prefix" class="ms-1" />
 </li>
