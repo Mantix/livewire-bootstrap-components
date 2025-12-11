@@ -13,6 +13,7 @@ return [
     'for_your_information' => 'For your information',
     'success' => 'Success!',
     'error' => 'Error!',
+    'open_menu' => 'Open menu',	
 ];
 
 
