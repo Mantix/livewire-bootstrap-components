@@ -33,7 +33,11 @@ A flexible card component with customizable styling and optional header/footer.
     background_image="/path/to/image.jpg"
     background_color="primary"
     text_color="white"
-    footer="Footer content">
+    footer="Footer content"
+    :actions="[
+        ['href' => '/items/1', 'icon' => 'eye', 'color' => 'primary', 'label' => __('View')],
+        ['wire:click' => 'editItem', 'icon' => 'pencil', 'color' => 'secondary', 'label' => __('Edit')]
+    ]">
     Card content here.
 </x-bootstrap::card>
 ```
@@ -45,6 +49,7 @@ A flexible card component with customizable styling and optional header/footer.
 - `background_color` (string, optional): Bootstrap background color class
 - `text_color` (string, optional): Bootstrap text color class
 - `footer` (string, optional): Footer content
+- `actions` (array, optional): Array of action configurations (see Actions Component)
 
 ### Form Group Component
 
@@ -94,7 +99,7 @@ A list item component with flexible action buttons for CRUD operations.
 - `class` (string, optional): Additional CSS classes
 - `background_color` (string, optional): Bootstrap background color
 - `text_color` (string, optional): Bootstrap text color
-- `actions` (array, optional): Array of action configurations
+- `actions` (array, optional): Array of action configurations (see Actions Component)
 
 **Action Configuration:**
 Each action in the `actions` array can have:
@@ -110,6 +115,18 @@ Each action in the `actions` array can have:
 - Responsive design: button group on desktop (md and up), dropdown menu on mobile
 - Supports both regular links (`href`) and Livewire actions (`wire:click`)
 - Confirmation dialogs for destructive actions
+
+### Actions Component
+
+Shared action renderer used by cards and list rows. It accepts the same `actions` array format shown above and automatically builds responsive button groups (desktop) and dropdowns (mobile). You can also use it directly:
+
+```blade
+<x-bootstrap::actions :actions="[
+    ['href' => route('items.show', $item), 'icon' => 'eye', 'color' => 'light', 'label' => __('View')],
+    ['wire:click' => 'edit', 'icon' => 'pencil', 'color' => 'primary', 'label' => __('Edit')],
+    ['wire:click' => 'delete', 'icon' => 'trash-can', 'color' => 'danger', 'label' => __('Delete'), 'wire:confirm' => __('ui.confirm_delete')]
+]" />
+```
 
 ### Modal Component
 
