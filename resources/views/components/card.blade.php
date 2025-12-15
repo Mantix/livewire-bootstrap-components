@@ -4,7 +4,7 @@
     @if (!empty($title) || !empty($actions))
         <div class="card-header d-flex justify-content-between align-items-center p-3 {{ !empty($background_color) ? 'bg-' . $background_color : '' }} {{ !empty($text_color) ? 'text-' . $text_color : '' }}">
             @if (!empty($title))
-                <h4>{!! $title !!}</h4>
+                <h4 class="mb-0">{!! $title !!}</h4>
             @endif
             @if (!empty($actions))
                 <x-bootstrap::actions :actions="$actions" class="ms-2" />
