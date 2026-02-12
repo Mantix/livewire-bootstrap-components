@@ -2,9 +2,9 @@
 
 <div {{ $attributes->class(['card', 'mb-3' => strpos($attributes->get('class'), 'mb-') === false]) }} style="{{ !empty($background_image) ? 'background-image: url(\'' . $background_image . '\'); background-size: cover; background-position: center center;' : '' }}">
     @if (!empty($title) || !empty($actions))
-        <div class="card-header d-flex justify-content-between align-items-center p-3 {{ !empty($background_color) ? 'bg-' . $background_color : '' }} {{ !empty($text_color) ? 'text-' . $text_color : '' }}">
+        <div class="card-header d-flex justify-content-between align-items-center p-3 {{ !empty($background_color) ? 'bg-' . $background_color : '' }}">
             @if (!empty($title))
-                <h4 class="mb-0">{!! $title !!}</h4>
+                <h4 class="mb-0 {{ !empty($text_color) ? 'text-' . $text_color : '' }}">{!! $title !!}</h4>
             @endif
             @if (!empty($actions))
                 <x-bootstrap::actions :actions="$actions" class="ms-2" />
