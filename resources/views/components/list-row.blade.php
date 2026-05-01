@@ -1,4 +1,4 @@
-@props(['class', 'background_color', 'text_color', 'narrow' => false, 'actions' => []])
+@props(['class' => null, 'background_color' => null, 'text_color' => null, 'narrow' => false, 'actions' => []])
 
 @php
     $actions = is_array($actions) ? $actions : [];
@@ -23,8 +23,10 @@
     }
 @endphp
 
-<li class="list-group-item d-flex justify-content-between align-items-start {{ $class ?? '' }} {{ !empty($background_color) ? 'bg-' . $background_color : '' }} {{ !empty($text_color) ? 'text-' . $text_color : '' }}" @if (!empty($dblclick_value)) @dblclick="{{ $dblclick_value }}" @endif>
-    <div class="me-auto my-1 text-truncate">{{ $slot }}</div>
+<li class="list-group-item d-flex justify-content-between align-items-center {{ $class }} {{ !empty($background_color) ? 'bg-' . $background_color : '' }} {{ !empty($text_color) ? 'text-' . $text_color : '' }}" @if (!empty($dblclick_value)) @dblclick="{{ $dblclick_value }}" @endif>
+    <div class="flex-grow-1 my-1 me-3 text-truncate" style="min-width: 0;">
+        {{ $slot }}
+    </div>
 
-    <x-bootstrap::actions :actions="$actions" :narrow="$narrow" :id-prefix="$actions_id_prefix" class="ms-1" />
+    <x-bootstrap::actions :actions="$actions" :narrow="$narrow" :id-prefix="$actions_id_prefix" />
 </li>
